@@ -23,7 +23,7 @@
       let newWord; // 현재 단어.
 
       const onClickButton = () => {
-        if (!word || word[word.length - 1] === newWord[0]) {
+        if (!word || word[word.length - 1] === newWord[0] && word[word.length] < 3) {
           //제시어가 비어 있거나 입력한 단어가 올바른가?
           //비어있다.
           word = newWord; // 입력한 단어가 제시어가 된다.

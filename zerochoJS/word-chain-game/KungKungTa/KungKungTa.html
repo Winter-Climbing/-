@@ -20,17 +20,75 @@
   <button>입력</button>
   
   <script>
-    const start = Number(prompt('참가 인원'))
+    // 입력할 수 있는 단어를 세 글자로 고정할 것, 세 클자가 아니라면 다시 입력하라고 표기할 것
+    // 몇 명이 참가할지 선택할 때 사용자가 취소를 누르면 다음 코드가 실행되지 않게 처리할 것
+    const number = Number(prompt('참가 인원'))
     const $order = document.querySelector('#order');
     const $word = document.querySelector('#word');
     const $input = document.querySelector('input');
     const $button = document.querySelector('button');
+    let word; // 제시어
+    let newWord; // 현재 단어
 
-    start = () => {
-      isNaN
+    // switch (isNaN(number)) {
+    //   case  false:
+    //     break;
+        
+    //   case true:
+    //     alert('숫자를 입력해주세요')
+    //     location.reload()
+    //     break;
+    // }
+
+    if (isNaN(number)) {
+      location.reload();
+    } else if (number !== Number) {
+      location.reload();
+    } else {
+      console.log('yes');
+    };
+
+    const onInput = (event) => {
+      newWord = event.target.value;
+    };
+
+    const onClickButton = (event) => {
+      if (!word) {
+        word = newWord;
+        $word.textContent = word;
+        const order = Number($order.textContent);
+        if (order + 1 > number) {
+          $order.textContent = 1;
+        } else {
+          $order.textContent = order + 1;
+        }
+        $input.value = '';
+        $input.focus();
+      } else {
+        if (word[word.length - 1] === newWord[0]) {
+          word = newWord;
+          $word.textContent = word;
+          const order = Number($order.textContent);
+          if (order + 1 > number) {
+            $order.textContent = 1;
+          } else {
+            $order.textContent = order + 1;
+          }
+          $input.value = '';
+          $input.focus();
+        } else {
+          // not correct
+          alert('올바르지 않은 단어입니다!')
+          $input.value = '';
+          $input.focus();
+        }
+      }
     };
     
 
+    // const numberScriptNumber = number.addEventListener('input', scriptNumber);
+    $input.addEventListener('input', onInput);
+    $button.addEventListener('click', onClickButton); 
 
 
   </script>
