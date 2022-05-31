@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>계산기</title>
+  <style>
+    * { box-sizing: border-box }
+    #result { width: 180px; height: 50px; margin: 5px; text-align: right }
+    #operator { width: 50px; height: 50px; margin: 5px; text-align: center }
+    button { width: 50px; height: 50px; margin: 5px }
+  </style>
+</head>
+
+<!-- 계산기 버튼 구현 -->
+<body>
+  <input readonly id="operator">
+  <input readonly type="number" id="result">
+  <div class="row">
+    <button id="num-7">7</button>
+    <button id="num-8">8</button>
+    <button id="num-9">9</button>
+    <button id="plus">+</button>
+  </div>
+  <div class="row">
+    <button id="num-4">4</button>
+    <button id="num-5">5</button>
+    <button id="num-6">6</button>
+    <button id="minus">-</button>
+  </div>
+  <div class="row">
+    <button id="num-1">1</button>
+    <button id="num-2">2</button>
+    <button id="num-3">3</button>
+    <button id="divide">/</button>
+  </div>
+  <div class="row">
+    <button id="clear">C</button>
+    <button id="num-0">0</button>
+    <button id="calculate">=</button>
+    <button id="multiply">x</button>
+  </div>
+
+  <script>
+    let numOne = '';
+    let operator = '';
+    let numTwo = '';
+    const $operator = document.querySelector('#operator');
+    const $result = document.querySelector('#result');
+    const onClickNumber = (number) => () => {
+      if (operator) { // 비어있지 않다.
+      numTwo += number;
+      } else {
+        numOne += number; // 비어있다
+      }
+      $result.value += number;
+    };
+    // 고차 함수 (high order function) - 함수가 함수를 리턴하는 함수를 고차함수라고 한다.
+    // 이 때 리턴은 생략될 수 있다. onClicrNumber 함수를 유심히 보라.
+    document.querySelector('num-0').addEventListener('click', onClickNumber('0')) 
+    // onClickNumber()에는 함수가 들어가기 때문에 return만 적을 경우 undefined가 정의되어 오류가 난다. 따라서 자릿값인 함수를 넣어줘야 된다.
+    document.querySelector('num-1').addEventListener('click', onClickNumber('1')) 
+    document.querySelector('num-2').addEventListener('click', onClickNumber('2')) 
+    document.querySelector('num-3').addEventListener('click', onClickNumber('3')) 
+    document.querySelector('num-4').addEventListener('click', onClickNumber('4')) 
+    document.querySelector('num-5').addEventListener('click', onClickNumber('5')) 
+    document.querySelector('num-6').addEventListener('click', onClickNumber('6')) 
+    document.querySelector('num-7').addEventListener('click', onClickNumber('7')) 
+    document.querySelector('num-8').addEventListener('click', onClickNumber('8')) 
+    document.querySelector('num-9').addEventListener('click', onClickNumber('9')) 
+
+    const onClickOperator = (op) => () => {
+      if (numOne) {
+        operator = op;
+        $operator.value = op;
+      } else {
+        alert('숫자를 먼저 입력하세요')
+      }
+    }
+
+    document.querySelector('plus').addEventListener('click', onClickOperator('+'));
+    document.querySelector('minus').addEventListener('click', onClickOperator('-'));
+    document.querySelector('divide').addEventListener('click', onClickOperator('/'));
+    document.querySelector('mutiply').addEventListener('click', onClickOperator('*'));
+    document.querySelector('calculate').addEventListener('click', () => {});
+    document.querySelector('clear').addEventListener('click', () => {});
+
+    // (event)는 어디서 오는가?
+    // const a = (event) => { console.log(event.target.value)};
+    // document.querySelector('plus').addEventListener('click', a);
+    // a(event);
+    // event는 브라우저가 만들어주는 객체이다. 
+    // 클릭을 했을 때 a 함수를 가져와 매개변수 event 객체를 인수로 넣어 실행해준다.
+  </script>
+</body>
+</html>
