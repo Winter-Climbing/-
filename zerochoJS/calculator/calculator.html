@@ -47,16 +47,14 @@
   const $operator = document.querySelector('#operator');
   const $result = document.querySelector('#result');
   const onClickNumber = (event) => {
-    if (!operator) { // 비어있다
+    if (operator) { // 비어있다
+      if (!numTwo) {
+        $result.value = '';
+      }
+      numTwo += event.target.textContent;
+    } else {
       numOne += event.target.textContent;
-      $result.value += event.target.textContent;
-      return;
     }
-    // 비어있지 않다
-    if (!numTwo) {
-      $result.value = '';
-    }
-    numTwo += event.target.textContent;
     $result.value += event.target.textContent;
   };
   // 고차 함수 (high order function) - 함수가 함수를 리턴하는 함수를 고차함수라고 한다.
@@ -86,8 +84,35 @@
   document.querySelector('#minus').addEventListener('click', onClickOperator('-'));
   document.querySelector('#divide').addEventListener('click', onClickOperator('/'));
   document.querySelector('#mutiply').addEventListener('click', onClickOperator('*'));
-  document.querySelector('#calculate').addEventListener('click', () => {});
-  document.querySelector('#clear').addEventListener('click', () => {});
+  document.querySelector('#calculate').addEventListener('click', () => {
+    if (numTwo) {
+      switch(operator) {
+        case '+':
+          $result.value = parseInt(numOne) + parseInt(numTwo);
+          break;
+        case '-':
+          $result.value = numOne - numTwo;
+          break;
+        case '*':
+          $result.value = numOne * numTwo;
+          break;
+        case '/':
+          $result.value = numOne / numTwo;
+          break;
+        default:
+          break;
+      } 
+    } else {
+      alert('숫자를 먼저 입력하세요');
+    };
+  });
+  document.querySelector('#clear').addEventListener('click', () => {
+    let numOne = '';
+    let operator = '';
+    let numTwo = '';
+    $operator.value = '';
+    $result.value = '';
+  });
 
   // (event)는 어디서 오는가?
   // const a = (event) => { console.log(event.target.value)};
