@@ -14,6 +14,7 @@ if (score > 90) {
 }
 
 // swich로 표현해보자
+// 비교 조건식에는 상수만 가능해서 변수의 작성은 불가능하다.
 switch (score) {
   case score > 90:
     console.log("A+");
