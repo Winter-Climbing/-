@@ -21,7 +21,7 @@ displayObj(ellie);
 // 2. 외부로 부터 주어진 인자(오브젝트)를 내부에서 변경
 
 function changeName(obj) {
-  // 이름부터 변경하는 느김을 주도록!
+  // 이름부터 변경하는 느낌을 주도록!
   return { ...obj, name: "bob" }; // 반환할때는 새로운 오브젝트 만들기!
 }
 changeName(ellie);
