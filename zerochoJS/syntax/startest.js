@@ -23,6 +23,14 @@
 //   console.log('*'.repeat(2*i - 1));
 // }
 
-for (let i = 1; i < 6; i++) {
-  console.log('*'.repeat(i - 1));
+// for (let i = 1; i < 6; i++) {
+//   console.log("*".repeat(i - 1));
+// }
+
+for (i = 0; i < 10; i += 2) {
+  console.log("*".repeat(i + 1));
+}
+
+for (i = 0; i < 10; i += 2) {
+  console.log("*".repeat(9 - i));
 }
