@@ -11,8 +11,21 @@
     <div><span id="order">1</span>번째 참가자</div>
     <div>제시어: <span id="word"></span></div>
     <input type="text" />
-    <button>입력</button>
+    <button id="button">입력</button>
 
-    <script></script>
+    <script>
+      const number = parseInt(prompt("몇 명이 참가하나요?"), 10);
+      alert(number);
+      const yes_or_no = confirm("맞나요?");
+      const $button = document.querySelector("#button");
+
+      document.querySelector("input").addEventListener("input", (event) => {
+        console.log("글자 입력", event.target.value);
+      });
+
+      document.querySelector("#button").addEventListener("click", function () {
+        console.log("버튼 클릭");
+      });
+    </script>
   </body>
 </html>
