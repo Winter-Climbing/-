@@ -31,11 +31,9 @@
             word = new_word;
             $word.textContent = word;
             let order = parseInt($order.textContent);
-            if (order === number) {
-              $order.textContent = 1;
-            } else {
-              $order.textContent = order + 1;
-            }
+            order === number
+              ? ($order.textContent = 1)
+              : ($order.textContent = order + 1);
           } else {
             alert("틀렸엉");
           }
