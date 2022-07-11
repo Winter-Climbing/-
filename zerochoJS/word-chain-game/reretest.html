@@ -14,15 +14,14 @@
     <button id="button">입력</button>
 
     <script>
-      const number = parseInt(prompt("몇 명이 참가하나요?"), 10);
-
+      const number = parseInt(prompt("몇 명입니까?"));
       if (number) {
         const $button = document.querySelector("#button");
         const $input = document.querySelector("input");
         const $word = document.querySelector("#word");
         const $order = document.querySelector("#order");
         let word; // 제시어
-        let new_word; // 새로 입력한 단어
+        let new_word; // 새로운 단어
 
         const on_click_button = () => {
           if (
@@ -31,14 +30,14 @@
           ) {
             word = new_word;
             $word.textContent = word;
-            const order = parseInt($order.textContent);
-            if (order + 1 > number) {
+            let order = parseInt($order.textContent);
+            if (order === number) {
               $order.textContent = 1;
             } else {
               $order.textContent = order + 1;
             }
           } else {
-            alert("다시 입력하세요!");
+            alert("틀렸엉");
           }
           $input.value = "";
           $input.focus();
