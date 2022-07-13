@@ -47,16 +47,20 @@
   let $operator = document.querySelector('#operator')
   let $result = document.querySelector('#result')
 
-  const on_click_number = (num) => () => {
+  const on_click_number = (event) => {
     if (!operator) {
-      numOne += num
-    } else {
-      numTwo += num
+      numOne += event.target.textContent;
+      $result.value += event.target.textContent;
+      return;
+    } 
+    if (!numTwo) {
+      $result.value = ''
     }
-    $result.value += num
+    numTwo += event.target.textContent;
+    $result.value += event.target.textContent;      
   }
 
-  const on_click_operator = (op) => {
+  const on_click_operator = (op) => () => {
     if (numOne) {
       operator = op;
       $operator.value = op
@@ -65,22 +69,49 @@
     }
   }
 
-  document.querySelector('#num-0').addEventListener('click', on_click_number('0'))
-  document.querySelector('#num-1').addEventListener('click', on_click_number('1'))
-  document.querySelector('#num-2').addEventListener('click', on_click_number('2'))
-  document.querySelector('#num-3').addEventListener('click', on_click_number('3'))
-  document.querySelector('#num-4').addEventListener('click', on_click_number('4'))
-  document.querySelector('#num-5').addEventListener('click', on_click_number('5'))
-  document.querySelector('#num-6').addEventListener('click', on_click_number('6'))
-  document.querySelector('#num-7').addEventListener('click', on_click_number('7'))
-  document.querySelector('#num-8').addEventListener('click', on_click_number('8'))
-  document.querySelector('#num-9').addEventListener('click', on_click_number('9'))
-  document.querySelector('#plus').addEventListener('click', () => {})
-  document.querySelector('#minus').addEventListener('click', () => {})
-  document.querySelector('#multiply').addEventListener('click', () => {})
-  document.querySelector('#divide').addEventListener('click', () => {})
-  document.querySelector('#calculate').addEventListener('click', () => {})
-  document.querySelector('#clear').addEventListener('click', () => {})
+
+  document.querySelector('#num-0').addEventListener('click', on_click_number)
+  document.querySelector('#num-1').addEventListener('click', on_click_number)
+  document.querySelector('#num-2').addEventListener('click', on_click_number)
+  document.querySelector('#num-3').addEventListener('click', on_click_number)
+  document.querySelector('#num-4').addEventListener('click', on_click_number)
+  document.querySelector('#num-5').addEventListener('click', on_click_number)
+  document.querySelector('#num-6').addEventListener('click', on_click_number)
+  document.querySelector('#num-7').addEventListener('click', on_click_number)
+  document.querySelector('#num-8').addEventListener('click', on_click_number)
+  document.querySelector('#num-9').addEventListener('click', on_click_number)
+  document.querySelector('#plus').addEventListener('click', on_click_operator('+'))
+  document.querySelector('#minus').addEventListener('click', on_click_operator('-'))
+  document.querySelector('#multiply').addEventListener('click', on_click_operator('*'))
+  document.querySelector('#divide').addEventListener('click', on_click_operator('/'))
+  document.querySelector('#calculate').addEventListener('click', () => {    
+    if (numTwo) {
+      switch (operator) {
+        case '+':
+          $result.value = parseInt(numOne) + parseInt(numTwo)
+          break;
+        case '-':
+          $result.value = numOne - numTwo
+          break;
+        case '/':
+          $result.value = numOne / numTwo
+          break;
+        case '*':
+          $result.value = numOne * numTwo
+          break;
+        default:
+          break;
+      }
+    } else {
+      alert('숫자를 먼저 입력하세요!')
+    }
+  })
+  document.querySelector('#clear').addEventListener('click', () => {    
+    numOne = '';
+    operator = '';
+    numTwo = '';
+    $operator.value = '';
+    $result.value = '';})
 </script>
 
 </html>
