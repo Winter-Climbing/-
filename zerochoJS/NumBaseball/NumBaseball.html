@@ -4,9 +4,61 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>끝말잇기</title>
+    <title>숫자야구</title>
   </head>
   <body>
-    <script></script>
+    <form action="" id="form">
+      <input type="text" id="input" />
+      <button>확인</button>
+    </form>
+    <div id="logs"></div>
+
+    <script>
+      const $form = document.querySelector("#form");
+      const $input = document.querySelector("#input");
+      const $logs = document.querySelector("#logs");
+
+      const number = [];
+      for (let n = 0; n < 9; n++) {
+        number.push(n + 1);
+      }
+
+      const answer = [];
+      for (let n = 0; n < 4; n++) {
+        const index = Math.floor(Math.random() * number.length);
+        answer.push(number[index]);
+        number.splice(index, 1);
+      }
+      console.log(answer);
+
+      const tries = [];
+      function checkInput(input) {
+        if (input.length !== 4) {
+          return alert("4자리 숫자를 입력해 주세요");
+        }
+        if (new Set(input).size !== 4) {
+          return alert("중복되지 않게 입력해 주세요");
+        }
+        if (tries.includes(input)) {
+          return alert("이미 시도한 값입니다.");
+        }
+        return true;
+      }
+
+      // form은 새로고침이 기본값이다.
+      // 따라서 preventDefault로 막아줘야한다. 대표적으로 form과 a 태그
+      // form을 쓸 경우 안의 태그가 배열 인덱스를 따른다.
+      // 예로 event.target[0] 으로 할 경우 input을 가리키고, event.target[1]을 쓸 경우 button 을 가리킨다.
+      $form.addEventListener("submit", (event) => {
+        event.preventDefault(); // 기본 동작 막기
+        const value = $input.value; // event.target[0]으로 써도 된다.
+        $input.value = "";
+        checkInput(value);
+        if (checkInput(value)) {
+          tries.push(value);
+        } else {
+        }
+      });
+    </script>
   </body>
 </html>
