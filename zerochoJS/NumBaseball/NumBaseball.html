@@ -53,12 +53,22 @@
         event.preventDefault(); // 기본 동작 막기
         const value = $input.value; // event.target[0]으로 써도 된다.
         $input.value = "";
-        checkInput(value);
-        if (checkInput(value)) {
-          tries.push(value);
-        } else {
+        const valid = checkInput(value);
+        if (!valid) return;
+        if (answer.join("") === value) {
+          $logs.textContent = "홈런!";
+          return;
+        }
+        if (tries.length > 8) {
+          const message = document.createTextNode(
+            `패배! 정답은 ${answer.join("")}`
+          );
+          $logs.appendChild(message);
+          return;
         }
       });
+
+      $fo;
     </script>
   </body>
 </html>
