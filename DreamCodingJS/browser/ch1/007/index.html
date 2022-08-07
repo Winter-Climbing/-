@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coordinates</title>
+    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="line horizontal"></div>
+    <div class="line vertical"></div>
+
+    <div class="image">
+      <span id="n">
+        <img src="../img/target.png" alt="타겟" />
+        <span id="text"></span>
+      </span>
+    </div>
+
+    <script>
+      const $n = document.querySelector("#n");
+      const $text = document.querySelector("#text");
+
+      document.addEventListener("mousemove", (e) => {
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+        $n.style.left = mouseX + "px";
+        $n.style.top = mouseY + "px";
+        $text.innerHTML = `${mouseX}, ${mouseY}`;
+      });
+      // const Coordinates = (e) => {
+      //   let x = e.clientX;
+      //   let y = e.clientY;
+      //   $n.innerHTML = `${x}, ${y}`;
+      // };
+    </script>
+  </body>
+</html>

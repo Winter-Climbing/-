@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>window_coordinate</title>
+    <style>
+      body {
+        /* overflow: hidden; */
+      }
+
+      .a {
+        width: 150px;
+        height: 150px;
+        background-color: blue;
+        margin-bottom: 4px;
+      }
+
+      .x {
+        width: 150px;
+        height: 150px;
+        background-color: red;
+        margin-bottom: 4px;
+      }
+
+      aside {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="a"></div>
+    <div class="a"></div>
+    <div class="a"></div>
+    <div class="a"></div>
+    <div class="a"></div>
+    <div class="a"></div>
+    <div class="x"></div>
+    <div class="a"></div>
+    <div class="a"></div>
+    <div class="a"></div>
+    <div class="a"></div>
+    <div class="a"></div>
+    <aside>
+      <button id="by" onclick="by()">Scroll by 100px</button>
+      <button id="to" onclick="to()">Scroll to 100px</button>
+      <button id="special" onclick="special()">Send into special</button>
+    </aside>
+
+    <script>
+      const $b = document.querySelector(".x");
+
+      const by = () => {
+        window.scrollBy({ top: 100, left: 0, behavior: "smooth" });
+      };
+
+      const to = () => {
+        window.scrollTo(0, 100);
+      };
+
+      const special = () => {
+        window.scrollTo(0, 0);
+      };
+
+      $b.addEventListener("click", (e) => {
+        const rect = $b.getBoundingClientRect();
+        console.log(rect);
+        console.log(` 페이지좌표: ${e.pageX}, ${e.pageY}`);
+        console.log(`클라이언트 좌표: ${e.clientX}, ${e.clientY}`);
+      });
+    </script>
+  </body>
+</html>
