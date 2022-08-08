@@ -4,9 +4,67 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Scroll</title>
-    <style></style>
+    <style>
+      body {
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      button {
+        display: block;
+        color: white;
+        background-color: orange;
+        cursor: pointer;
+      }
+
+      img {
+        display: block;
+      }
+
+      #flex {
+      }
+    </style>
   </head>
   <body>
-    <script></script>
+    <div id="flex">
+      <button>Finding a rabbit</button>
+      <img src="./img/carrot.png" alt="당근" />
+      <img src="./img/carrot.png" alt="당근" />
+      <img src="./img/carrot.png" alt="당근" />
+      <img src="./img/carrot.png" alt="당근" />
+      <img src="./img/carrot.png" alt="당근" />
+      <img src="./img/carrot.png" alt="당근" />
+      <img src="./img/carrot.png" alt="당근" />
+      <img id="rabbit" src="./img/rabbit.png" alt="토끼" />
+      <img src="./img/carrot.png" alt="당근" />
+      <img src="./img/carrot.png" alt="당근" />
+      <img src="./img/carrot.png" alt="당근" />
+      <img src="./img/carrot.png" alt="당근" />
+      <img src="./img/carrot.png" alt="당근" />
+    </div>
+
+    <script>
+      const $button = document.querySelector("button");
+      const $rabbit = document.querySelector("#rabbit");
+
+      // const to = () => {
+      //   window.scrollTo(513, 1591);
+      // };
+
+      // $rabbit.addEventListener("click", (e) => {
+      //   const rect = $rabbit.getBoundingClientRect();
+      //   console.log(rect);
+      //   console.log(` 페이지좌표: ${e.pageX}, ${e.pageY}`);
+      // });
+
+      // 엘리의 답안
+
+      $button.addEventListener("click", () => {
+        $rabbit.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    </script>
   </body>
 </html>
